@@ -1,0 +1,6 @@
+[submodule "blockhead"]
+	path = blockhead
+	url = https://github.com/chr15m/blockhead.git
+[submodule "s-abstractions"]
+	path = s-abstractions
+	url = https://github.com/chr15m/s-abstractions.git
