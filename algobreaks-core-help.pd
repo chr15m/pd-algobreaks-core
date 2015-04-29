@@ -15,17 +15,17 @@
 #X connect 2 0 1 0;
 #X connect 3 0 2 1;
 #X connect 4 0 2 0;
-#X restore 10 113 pd clock;
-#X obj 10 135 s algobreak/tick;
-#X obj 10 92 tgl 15 0 empty empty empty 17 7 0 10 -260097 -1 -1 1 1
-;
-#X obj 548 277 catch~ algobreak/out;
-#X obj 548 329 *~;
-#X obj 548 351 dac~;
-#X obj 566 310 hsl 64 15 0 1 0 0 empty empty volume -2 -8 0 10 -262144
+#X restore 10 123 pd clock;
+#X obj 10 145 s algobreak/tick;
+#X obj 10 102 tgl 15 0 empty empty empty 17 7 0 10 -260097 -1 -1 1
+1;
+#X obj 548 292 catch~ algobreak/out;
+#X obj 548 344 *~;
+#X obj 548 366 dac~;
+#X obj 566 325 hsl 64 15 0 1 0 0 empty empty volume -2 -8 0 10 -260097
 -1 -1 1000 1;
 #X obj 548 104 nbx 3 14 0 128 0 1 algobreak/pitch algobreak/pitch/set
-algobreak/pitch 0 -8 0 10 -262144 -1 -1 69 256;
+algobreak/pitch 0 -8 0 10 -262144 -1 -1 63 256;
 #X obj 548 134 nbx 3 14 0 128 0 1 algobreak/slices algobreak/slices/set
 algobreak/slices 0 -8 0 10 -262144 -1 -1 32 256;
 #X obj 548 171 hradio 15 1 0 4 algobreak/rate empty algobreak/rate
@@ -33,10 +33,8 @@ algobreak/slices 0 -8 0 10 -262144 -1 -1 32 256;
 #X msg 547 14 amen;
 #X msg 586 14 think;
 #X msg 630 14 hotpants;
-#X text 31 91 <- start timer;
+#X text 31 101 <- start timer;
 #X text 171 27 <- engine room;
-#X obj 551 242 hsl 128 15 0 128 0 0 algobreak/clip empty algobreak/clip
--2 -8 0 10 -262144 -1 -1 0 1;
 #X obj 551 206 hsl 128 15 0 1 0 0 algobreak/swing algobreak/swing/set
 algobreak/swing -2 -8 0 10 -262144 -1 -1 0 1;
 #X symbolatom 547 67 10 0 0 0 break algobreak/sample/set algobreak/sample
@@ -44,7 +42,7 @@ algobreak/swing -2 -8 0 10 -262144 -1 -1 0 1;
 #X text 368 131 (same each Pd start);
 #N canvas 2 50 450 300 seed 0;
 #X obj 7 109 nbx 7 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
--262144 -1 -1 57683 256;
+-262144 -1 -1 30101 256;
 #X obj 7 58 inlet;
 #X obj 7 138 outlet;
 #X obj 7 79 random 65536;
@@ -56,10 +54,10 @@ algobreak/swing -2 -8 0 10 -262144 -1 -1 0 1;
 #X obj 333 117 bng 32 250 50 0 empty empty empty 17 7 0 10 -260097
 -1 -1;
 #X text 369 115 deterministic seed;
-#X text 139 95 randomize;
+#X text 271 264 randomize;
 #X text 15 263 table names and internal data to modify:;
-#X obj 385 261 r algobreak/index;
-#X floatatom 385 283 5 0 0 0 - - -, f 5;
+#X obj 11 48 r algobreak/index;
+#X floatatom 11 70 5 0 0 0 - - -, f 5;
 #X msg 333 189 \; algobreak/seed \$1 \; algobreak/makenew bang \;;
 #X obj 10 27 algobreaks-core algobreak;
 #N canvas 2 48 450 300 set-sample 0;
@@ -69,18 +67,24 @@ algobreak/swing -2 -8 0 10 -262144 -1 -1 0 1;
 #X connect 1 0 2 0;
 #X connect 2 0 0 0;
 #X restore 547 44 pd set-sample;
-#X msg 18 282 \; algobreak/sequence = 0 to 15 \;;
-#X msg 142 116 \; algobreak/pickstyle bang \; algobreak/pickmutations
-bang \; algobreak/pickbreak bang \; algobreak/pickpitch bang \;;
+#X obj 551 269 hsl 128 15 0 128 0 0 algobreak/mutationrate algobreak/mutationrate/set
+algobreak/mutationrate -2 -8 0 10 -262144 -1 -1 0 1;
+#X msg 18 282 \; algobreak/sequence = 0 to 15 \; algobreak/rateseq
+= 0/1 over 15 beats \;;
+#X msg 274 285 \; algobreak/pickbreak bang \; algobreak/pickstyle bang
+\; algobreak/pickmutations bang \; algobreak/pickpitch bang \; algobreak/pickslow
+bang \;;
+#X obj 547 237 hradio 15 1 0 4 algobreak/clip algobreak/clip/set algobreak/clip
+0 -8 0 10 -262144 -1 -1 0;
 #X connect 1 0 2 0;
 #X connect 3 0 1 0;
 #X connect 4 0 5 0;
 #X connect 5 0 6 0;
 #X connect 5 0 6 1;
 #X connect 7 0 5 1;
-#X connect 11 0 29 0;
-#X connect 12 0 29 0;
-#X connect 13 0 29 0;
-#X connect 20 0 27 0;
-#X connect 21 0 20 0;
-#X connect 25 0 26 0;
+#X connect 11 0 28 0;
+#X connect 12 0 28 0;
+#X connect 13 0 28 0;
+#X connect 19 0 26 0;
+#X connect 20 0 19 0;
+#X connect 24 0 25 0;
