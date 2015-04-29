@@ -1,50 +1,50 @@
-#N canvas 674 209 715 393 10;
+#N canvas 892 140 715 393 10;
 #X declare -path .;
 #X declare -path s-abstractions/trunk/;
 #X declare -path common;
+#X declare -path blockhead;
 #X text 7 5 algorithmic breakbeat tweacxzler.;
 #N canvas 2 48 450 300 clock 0;
 #X obj 10 5 inlet;
 #X obj 10 71 outlet;
-#X obj 10 27 metro 133;
 #X obj 10 49 f;
 #X obj 40 49 + 1;
-#X connect 0 0 2 0;
+#X obj 10 27 metro 83;
+#X connect 0 0 4 0;
 #X connect 2 0 3 0;
-#X connect 3 0 4 0;
-#X connect 3 0 1 0;
-#X connect 4 0 3 1;
+#X connect 2 0 1 0;
+#X connect 3 0 2 1;
+#X connect 4 0 2 0;
 #X restore 10 113 pd clock;
 #X obj 10 135 s algobreak/tick;
 #X obj 10 92 tgl 15 0 empty empty empty 17 7 0 10 -260097 -1 -1 1 1
 ;
-#X obj 548 257 catch~ algobreak/out;
-#X obj 548 309 *~;
-#X obj 548 331 dac~;
-#X obj 566 290 hsl 64 15 0 1 0 0 empty empty volume -2 -8 0 10 -262144
--1 -1 4100 1;
-#X obj 548 84 nbx 3 14 0 128 0 1 algobreak/pitch empty algobreak/pitch
-0 -8 0 10 -262144 -1 -1 60 256;
-#X obj 548 114 nbx 3 14 0 128 0 1 algobreak/slices algobreak/slices/set
+#X obj 548 277 catch~ algobreak/out;
+#X obj 548 329 *~;
+#X obj 548 351 dac~;
+#X obj 566 310 hsl 64 15 0 1 0 0 empty empty volume -2 -8 0 10 -262144
+-1 -1 1000 1;
+#X obj 548 104 nbx 3 14 0 128 0 1 algobreak/pitch algobreak/pitch/set
+algobreak/pitch 0 -8 0 10 -262144 -1 -1 69 256;
+#X obj 548 134 nbx 3 14 0 128 0 1 algobreak/slices algobreak/slices/set
 algobreak/slices 0 -8 0 10 -262144 -1 -1 32 256;
-#X obj 548 151 hradio 15 1 0 4 algobreak/rate empty algobreak/rate
+#X obj 548 171 hradio 15 1 0 4 algobreak/rate empty algobreak/rate
 0 -8 0 10 -262144 -1 -1 0;
-#X obj 547 44 s algobreak/sample;
 #X msg 547 14 amen;
 #X msg 586 14 think;
 #X msg 630 14 hotpants;
 #X text 31 91 <- start timer;
 #X text 171 27 <- engine room;
-#X obj 551 222 hsl 128 15 0 128 0 0 algobreak/clip empty algobreak/clip
+#X obj 551 242 hsl 128 15 0 128 0 0 algobreak/clip empty algobreak/clip
 -2 -8 0 10 -262144 -1 -1 0 1;
-#X obj 551 186 hsl 128 15 0 1 0 0 algobreak/swing algobreak/swing/set
+#X obj 551 206 hsl 128 15 0 1 0 0 algobreak/swing algobreak/swing/set
 algobreak/swing -2 -8 0 10 -262144 -1 -1 0 1;
-#X obj 405 14 r algobreak/sample/set;
-#X symbolatom 405 36 10 0 0 0 - - -, f 10;
+#X symbolatom 547 67 10 0 0 0 break algobreak/sample/set algobreak/sample
+, f 10;
 #X text 368 131 (same each Pd start);
-#N canvas 2 48 450 300 seed 0;
+#N canvas 2 50 450 300 seed 0;
 #X obj 7 109 nbx 7 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
--262144 -1 -1 48674 256;
+-262144 -1 -1 57683 256;
 #X obj 7 58 inlet;
 #X obj 7 138 outlet;
 #X obj 7 79 random 65536;
@@ -56,30 +56,31 @@ algobreak/swing -2 -8 0 10 -262144 -1 -1 0 1;
 #X obj 333 117 bng 32 250 50 0 empty empty empty 17 7 0 10 -260097
 -1 -1;
 #X text 369 115 deterministic seed;
-#X msg 152 116 \; acid/pickslide bang \; acid/pickoctave bang \; acid/pickaccent
-bang \; acid/picksequence bang \; acid/picknotes bang \; acid/pickrootnote
-bang \; acid/pickwave bang \; acid/pickswing bang \; acid/pickdecay
-bang \;;
-#X text 149 95 randomize;
+#X text 139 95 randomize;
 #X text 15 263 table names and internal data to modify:;
-#X msg 18 282 \; acid/slide = 0 or 1 length 16 \; acid/accent = 0 or
-1 length 16 \; acid/octave = 0 to 2 length 16 \; acid/sequence = 0
-to 4 where 0 is a rest note length 16 \; acid/notes = lookup table
-for sequence = 0 to 12 length 4 \;;
 #X obj 385 261 r algobreak/index;
 #X floatatom 385 283 5 0 0 0 - - -, f 5;
-#X obj 10 27 algobreaks-core algobreak;
 #X msg 333 189 \; algobreak/seed \$1 \; algobreak/makenew bang \;;
+#X obj 10 27 algobreaks-core algobreak;
+#N canvas 2 48 450 300 set-sample 0;
+#X obj 11 54 s algobreak/sample/set;
+#X obj 11 9 inlet;
+#X obj 11 31 symbol;
+#X connect 1 0 2 0;
+#X connect 2 0 0 0;
+#X restore 547 44 pd set-sample;
+#X msg 18 282 \; algobreak/sequence = 0 to 15 \;;
+#X msg 142 116 \; algobreak/pickstyle bang \; algobreak/pickmutations
+bang \; algobreak/pickbreak bang \; algobreak/pickpitch bang \;;
 #X connect 1 0 2 0;
 #X connect 3 0 1 0;
 #X connect 4 0 5 0;
 #X connect 5 0 6 0;
 #X connect 5 0 6 1;
 #X connect 7 0 5 1;
-#X connect 12 0 11 0;
-#X connect 13 0 11 0;
-#X connect 14 0 11 0;
-#X connect 19 0 20 0;
-#X connect 22 0 32 0;
-#X connect 23 0 22 0;
-#X connect 29 0 30 0;
+#X connect 11 0 29 0;
+#X connect 12 0 29 0;
+#X connect 13 0 29 0;
+#X connect 20 0 27 0;
+#X connect 21 0 20 0;
+#X connect 25 0 26 0;
