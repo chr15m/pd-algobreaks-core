@@ -1,4 +1,4 @@
-#N canvas 892 140 715 393 10;
+#N canvas 996 147 715 393 10;
 #X declare -path .;
 #X declare -path s-abstractions/trunk/;
 #X declare -path common;
@@ -25,7 +25,7 @@
 #X obj 566 325 hsl 64 15 0 1 0 0 empty empty volume -2 -8 0 10 -260097
 -1 -1 1000 1;
 #X obj 548 104 nbx 3 14 0 128 0 1 algobreak/pitch algobreak/pitch/set
-algobreak/pitch 0 -8 0 10 -262144 -1 -1 63 256;
+algobreak/pitch 0 -8 0 10 -262144 -1 -1 69 256;
 #X obj 548 134 nbx 3 14 0 128 0 1 algobreak/slices algobreak/slices/set
 algobreak/slices 0 -8 0 10 -262144 -1 -1 32 256;
 #X obj 548 171 hradio 15 1 0 4 algobreak/rate empty algobreak/rate
@@ -42,7 +42,7 @@ algobreak/swing -2 -8 0 10 -262144 -1 -1 0 1;
 #X text 368 131 (same each Pd start);
 #N canvas 2 50 450 300 seed 0;
 #X obj 7 109 nbx 7 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
--262144 -1 -1 30101 256;
+-262144 -1 -1 4 256;
 #X obj 7 58 inlet;
 #X obj 7 138 outlet;
 #X obj 7 79 random 65536;
